@@ -13,8 +13,8 @@ PoiExcelExport实现了[POI](http://poi.apache.org/)对`.xlsx`文件的導出功
 
 # prerequisites
 
-- excel template(EXCEL模板，如示例中的 **用户喜好统计.xlsx**)
-- annotation template,which specify row,col position of data for render in excel template(注解模板，指定需要导出数据的位置、渲染方向、样式)
+- excel template,please refer to **用户喜好统计.xlsx**(EXCEL模板，如示例中的 **用户喜好统计.xlsx**)
+- annotation template,which specify row,col offset position of data for render in excel template,please refer to  **TempUserPreference.java**(注解模板，指定需要导出数据的位置、渲染方向、样式,如示例中的 **TempUserPreference.java**)
 - datas for export,which should be type of collection(数据集封装成List集合)
 
 
