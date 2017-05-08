@@ -11,6 +11,12 @@ PoiExcelExport实现了[POI](http://poi.apache.org/)对`.xlsx`文件的導出功
 - 该类库适用于导出模板固定情况下，如普通的分类。
 - 在导出类别动态变化的情况下，如常展厅、临展厅这类不固定分类场景下，不要使用。
 
+# prerequisites
+
+- excel template(EXCEL模板，如示例中的 **用户喜好统计.xlsx**)
+- annotation template,which specify row,col position of data for render in excel template(注解模板，指定需要导出数据的位置、渲染方向、样式)
+- datas for export,which should be type of collection(数据集封装成List集合)
+
 
 ## Scenario
 
