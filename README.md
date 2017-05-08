@@ -1,33 +1,38 @@
 # PoiExcelExport
 
+PoiExcelExport implements encapsulation for excel file export which is based on [POI3.8](http://poi.apache.org/).With the utility,u could export .xlsx file including picture(convert to svgString string from front-end) easily in one line code.
+Thus u  can eliminate repeated code and work more efficiently.Also,the library can custom define new cell styles and font styles.
 
-PoiExcelExport实现了[POI](http://poi.apache.org/)对`.xlsx`文件的導出功能的封装，实现了根據导出excel模板类定义，自动填充excel的功能。
+PoiExcelExport实现了[POI3.8](http://poi.apache.org/)对`.xlsx`文件的導出功能的封装，实现了根據导出excel模板类定义，自动填充excel的功能。
 
 该类库可以增加自定义cell样式和字体样式进行扩展。
 
-# Notion
+# Notion（注意事项）
 
+- 基于[POI3.8](http://poi.apache.org/)
 - 该poi库使用注解类作为输出excel模板，如有需要，可以使用xml格式的模板。
 - 该类库适用于导出模板固定情况下，如普通的分类。
 - 在导出类别动态变化的情况下，如常展厅、临展厅这类不固定分类场景下，不要使用。
 
-# prerequisites
+# prerequisites（预置条件）
 
 - excel template,please refer to **用户喜好统计.xlsx**(EXCEL模板，如示例中的 **用户喜好统计.xlsx**)
 - annotation template,which specify row,col offset position of data for render in excel template,please refer to  **TempUserPreference.java**(注解模板，指定需要导出数据的位置、渲染方向、样式,如示例中的 **TempUserPreference.java**)
 - datas for export,which should be type of collection(数据集封装成List集合)
 
 
-## Scenario
+## Scenario（场景）
 
+  the library haven't data format validation for export data in practical scenario.
+  
   该类库主要用应用场景是在数据中心做导出功能，目前业务较为简单，所以没有对导出到excel模板显示的数据做类型校验，后期可以进行扩展。
 
 
-## 依赖
+## Dependencies（依赖）
 
 PoiExcelExport依赖于**Apache POI 3.8**类库。
 
-## 使用说明
+## usage demonstration
 
 参考 *com.ld.datacenter.service/CollectionStatisticService/exportMonthly()(line 1398)* 测试用例。
 
@@ -39,7 +44,7 @@ PoiExcelExport依赖于**Apache POI 3.8**类库。
 			
 ***
 
-### 使用方式
+### usage（使用）
 
 - 1.*取得数据*
 
@@ -49,7 +54,7 @@ PoiExcelExport依赖于**Apache POI 3.8**类库。
 
 			PoiExportFacade.export(baseSearchDto, DataCenterConstant.EXPORT_ALL_USER_PREFERENCE_TEMP_PATH, "全部用户喜好统计", chartData, GuideUserPreferenceResultDto.class, TempUserPreference.class, new int[]{1,14,5,17});
 
-### 注册新的样式
+### register new style(注册新的样式)
 
 * 注册的新的cell样式类型类必须 实现 [ICellStyleFactory](位于com.ld.datacenter.poi.font)接口。
 
@@ -77,7 +82,7 @@ PoiExcelExport依赖于**Apache POI 3.8**类库。
 - [XSSFontUtil](com.ld.datacenter.poi.util.XSSFontUtil)
 		
 
-### 实体对象
+###annotation entity(注解方式模板)
 
 实体类必须标注**@ExcelEntity**注解，其中row定义需要填充总行数，col对应需要填充总列数
 
@@ -140,7 +145,7 @@ PoiExcelExport依赖于**Apache POI 3.8**类库。
 }
 
 # 2017-4-27 update
-- 增加外观，屏蔽导出细节，进一步简化导出
+- abstract detail export process into an easy export method.（增加外观，屏蔽导出细节，进一步简化导出）
 				
 				
 				public Optional<InputStream> exportUserPreference(final BaseSearchDto baseSearchDto) throws IOException{
